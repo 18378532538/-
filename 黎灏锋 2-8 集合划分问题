@@ -14,7 +14,7 @@ int main()
 	printf("请输入元素个数:\n"); 
 	scanf("%d",&n);
 	for(m=1;m<=n;m++)
-	{
+	{ 
 		count+=set(n,m);
 	}
 	printf("非空子集数为：%d\n",count);
