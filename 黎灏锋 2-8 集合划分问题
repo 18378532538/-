@@ -1,13 +1,15 @@
 //题目：给定正整数n和m，计算出n个元素的集合｛1，2，...，n｝可以划分为多少个不同的由m个非空子集组成的集合
 #include<stdio.h>
-int set(int n,int m)//自定义一个函数，功能：
+int F(int n,int m)//自定义一个函数，功能：
 {
-	if(m==n || m==1)
-		return 1;
-		//当m==n时:把前n-1个元素分成m-1份，然后第n个元素单独放。
-    		//当m==1时:把前n-1个元素分成m份，然后第n个素分别插入到这m个集合中
-	return set(n-1,m-1)+m*set(n-1,m);
+	if( (m>n)||(m==0) )
+		return 0;
+	else if( m==n || m==1)	//当m==n时:把前n-1个元素分成m-1份，然后第n个元素单独放。
+		return 1;	//当m==1时:把前n-1个元素分成m份，然后第n个素分别插入到这m个集合中			
+		else
+		return F(n-1,m-1)+m*F(n-1,m);
 }
+
 int main()
 {
 	int m,n;//n是元素个数，m是非空子集数
@@ -17,7 +19,7 @@ int main()
 	scanf("%d",&n);
 	scanf("%d",&m);
 
-	count+=set(n,m);	
+	count+=F(n,m);	
 	printf("%d个不同的非空子集组成的集合数为：%d\n",m,count);
 	return 0;
 }
